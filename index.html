@@ -547,8 +547,9 @@ footer .totop{margin-top:var(--s1)}
 @media(max-width:599px){.hon li{grid-template-columns:56px 1fr!important;column-gap:var(--s2);row-gap:0;align-items:start}}
 /* section labels (Fun facts, Hobbies): step 4 of the scale, pinned to 20px */
 .bio .hn.offc{font-size:20px;line-height:1.15;font-weight:700;color:var(--ink)!important;text-transform:none;letter-spacing:-.015em}
-.tl .sched{justify-self:end;margin-top:var(--s1);font-size:var(--t-x);font-weight:700;line-height:1.15;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
-@media(min-width:760px){.tl .sched{grid-column:2 / -1}}
+.tl .sched{justify-self:start;margin-top:var(--s1);font-size:var(--t-x);font-weight:700;line-height:1.15;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
+.tl .sched{margin-top:4px}
+@media(min-width:760px){.tl .sched{grid-column:3;margin-top:calc(var(--s1) - var(--gap))}}
 .stats b,.mark{font-variant-numeric:tabular-nums}
 </style>
 </head>
