@@ -493,6 +493,13 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 .vw video{opacity:0;transform:scale(1.04);filter:blur(8px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1);background:transparent}
 .vw.vin video{opacity:1;transform:none;filter:none}
 @media (prefers-reduced-motion:reduce){.vw video{transition:none}}
+
+/* ski film under Loves */
+.ski{margin:var(--block) calc(var(--pad)*-1) 0}
+.ski .vw,.ski video{width:100%}
+.ski video{display:block;aspect-ratio:9/16;object-fit:cover}
+.ski figcaption{padding:8px var(--pad) 0;font-size:var(--t-x);font-weight:700}
+@media(min-width:760px){.ski{margin:var(--block) 0 0;max-width:min(100%,calc(80vh*9/16))}.ski figcaption{padding-left:0}}
 </style>
 </head>
 <body>
@@ -540,7 +547,7 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
   <div class="hole"><h2 class="title fx"><span class="ln"><span class="sp">About</span></span><span class="ln g"><span class="sp" style="--d:.2s">–Hole 2</span></span></h2></div>
   <p>I’m a first-year at Loyola Marymount, playing for the Lions and studying finance. I speak English and French, and I’m now competing at the Division I level.</p>
   <div class="stats fx fun"><div><b class="sp">6</b><span class="small">age he started, first tournament in 2014. Twelve years of competitive golf</span></div><div><b class="sp" style="--d:0.12s">326+</b><span class="small">tournament rounds</span></div><div><b class="sp" style="--d:0.24s">14</b><span class="small">tours played, from U.S. Kids to NCAA Division I. Winner on 9 of them</span></div><div><b class="sp" style="--d:0.36s">21,000+</b><span class="small">tournament shots (8,222 of them in world-ranked play)</span></div><div><b class="sp" style="--d:0.48s">72.8</b><span class="small">scoring average over 113 world-ranked rounds</span></div><div><b class="sp" style="--d:0.60s">20</b><span class="small">rounds in the 60s in world-ranked events</span></div><div><b class="sp" style="--d:0.72s">30</b><span class="small">back nine at Terra Lago, on the way to his first Toyota Tour Cup win</span></div><div><b class="sp" style="--d:0.84s">62%</b><span class="small">of recorded starts finished in the top 10</span></div><div><b class="sp" style="--d:0.96s">11</b><span class="small">countries competed in, on 3 continents</span></div><div><b class="sp" style="--d:1.08s">6′1″</b><span class="small">height</span></div></div>
-  <div class="hn caps offc">Loves</div><div class="loves"><div><b>Ski</b><span class="g">Winter</span></div><div><b>Golf</b><span class="g">Always</span></div><div><b>Drive</b><span class="g">Open road</span></div><div><b>Fish</b><span class="g">Offshore</span></div><div><b>Fly</b><span class="g">Pilot in training</span></div></div>
+  <div class="hn caps offc">Loves</div><div class="loves"><div><b>Ski</b><span class="g">Winter</span></div><div><b>Golf</b><span class="g">Always</span></div><div><b>Drive</b><span class="g">Open road</span></div><div><b>Fish</b><span class="g">Offshore</span></div><div><b>Fly</b><span class="g">Pilot in training</span></div></div><figure class="ski"><video class="vfade" src="vid/ski.mp4" poster="vid/ski.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Skiing video"></video><figcaption>Ski</figcaption></figure>
 </div></section>
 
 
@@ -668,9 +675,9 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.targ
 reels.forEach(function(r){io.observe(r.querySelector('video'));});})();
 
 (function(){var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
-[].forEach.call(document.querySelectorAll('.reel video'),function(v){var w=document.createElement('span');w.className='vw';
+[].forEach.call(document.querySelectorAll('.reel video,video.vfade'),function(v){var w=document.createElement('span');w.className='vw';
  if(v.poster)w.style.backgroundImage='url('+v.poster+')';v.parentNode.insertBefore(w,v);w.appendChild(v);
- if(red||!('IntersectionObserver' in window)){w.classList.add('vin');return;}
+ if(red||!('IntersectionObserver' in window)){if(red&&v.classList.contains('vfade')){v.removeAttribute('autoplay');v.pause();}w.classList.add('vin');return;}
  var seen=false,ready=false;function go(){if(seen&&ready)w.classList.add('vin');}
  function rd(){ready=true;go();}
  v.addEventListener('loadeddata',rd);v.addEventListener('canplay',rd);if(v.readyState>=2)ready=true;
