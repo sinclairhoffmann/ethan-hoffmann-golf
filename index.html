@@ -525,6 +525,13 @@ footer .pcols{row-gap:0}
 footer .pcols a{display:inline-block;overflow-wrap:anywhere}
 footer .totop{margin-top:var(--s1)}
 @media(min-width:760px){footer{margin-top:var(--s6);padding-bottom:var(--s5)}}
+/* sound toggle sits right after the caption */
+.reel figcaption{justify-content:flex-start;gap:var(--s1)}
+.reel .snd,.reel .snd.on{color:var(--muted);font-weight:400}
+.reel figcaption b::after{content:"·";margin-left:var(--s1);color:var(--muted);font-weight:400}
+.ski figcaption{margin-top:var(--s1);font-size:var(--t-x);line-height:1.4;padding:0 var(--pad)}
+.ski figcaption b{font-weight:700}
+@media(min-width:760px){.ski figcaption{padding:0 calc(max(0px,(100vw - 1240px)/2) + var(--pad))}}
 </style>
 </head>
 <body>
@@ -572,7 +579,7 @@ footer .totop{margin-top:var(--s1)}
   <div class="hole"><h2 class="title fx"><span class="ln"><span class="sp">About</span></span><span class="ln g"><span class="sp" style="--d:.2s">–Hole 2</span></span></h2></div>
   <p>I’m a first-year at Loyola Marymount, studying finance and playing Division I golf for the Lions. I grew up in Switzerland and speak English and French.</p>
   <div class="stats fx fun"><div><b class="sp">6</b><span class="small">Age started</span></div><div><b class="sp" style="--d:0.12s">326+</b><span class="small">Tournament rounds</span></div><div><b class="sp" style="--d:0.24s">14</b><span class="small">Tours played, winner on 9</span></div><div><b class="sp" style="--d:0.36s">21,000+</b><span class="small">Tournament shots</span></div><div><b class="sp" style="--d:0.48s">72.8</b><span class="small">World-ranked scoring average</span></div><div><b class="sp" style="--d:0.60s">20</b><span class="small">World-ranked rounds in the 60s</span></div><div><b class="sp" style="--d:0.72s">30</b><span class="small">Lowest back nine</span></div><div><b class="sp" style="--d:0.84s">62%</b><span class="small">Top-10 finishes</span></div><div><b class="sp" style="--d:0.96s">11</b><span class="small">Countries, 3 continents</span></div><div><b class="sp" style="--d:1.08s">6′1″</b><span class="small">Height</span></div></div>
-  <div class="hn caps offc">Loves</div><div class="loves"><div><b>Ski</b><span class="g">Winter</span></div><div><b>Golf</b><span class="g">Always</span></div><div><b>Drive</b><span class="g">Open road</span></div><div><b>Fish</b><span class="g">Offshore</span></div><div><b>Fly</b><span class="g">Pilot in training</span></div></div><figure class="ski"><video class="vfade" src="vid/ski.mp4" poster="vid/ski.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Skiing video"></video></figure>
+  <div class="hn caps offc">Loves</div><div class="loves"><div><b>Ski</b><span class="g">Winter</span></div><div><b>Golf</b><span class="g">Always</span></div><div><b>Drive</b><span class="g">Open road</span></div><div><b>Fish</b><span class="g">Offshore</span></div><div><b>Fly</b><span class="g">Pilot in training</span></div></div><figure class="ski"><video class="vfade" src="vid/ski.mp4" poster="vid/ski.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Skiing video"></video><figcaption><b>Zermatt</b></figcaption></figure>
 </div></section>
 
 
