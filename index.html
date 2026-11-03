@@ -410,11 +410,6 @@
 
 nav .yds{font-weight:500}
 
-/* viewport edge fades: content fades out under the top bar and fades in from the bottom */
-body::before,body::after{content:"";position:fixed;left:0;right:0;z-index:4;pointer-events:none}
-body::before{top:56px;height:56px;background:linear-gradient(#fff,rgba(255,255,255,0))}
-body::after{bottom:0;height:72px;background:linear-gradient(rgba(255,255,255,0),#fff)}
-@media(min-width:760px){body::before{top:64px;height:72px}body::after{height:96px}}
 
 /* photo lightbox */
 .lb-ov{position:fixed;inset:0;z-index:50;background:#fff;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .35s ease}
@@ -504,7 +499,6 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 .vw{background-color:transparent;line-height:0;z-index:4;isolation:isolate}
 .reel video,.ski video,.vw video{background:transparent;border:0;outline:0;border-radius:0;box-shadow:none}
 .vw.vin video{filter:none;opacity:1;transform:none}
-body::before,body::after{z-index:3}
 </style>
 </head>
 <body>
