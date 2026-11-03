@@ -500,13 +500,9 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 .reel video,.ski video,.vw video{background:transparent;border:0;outline:0;border-radius:0;box-shadow:none}
 .vw.vin video{filter:none;opacity:1;transform:none}
 
-/* back to top: golf ball */
-.totop{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:var(--block);text-decoration:none;color:var(--ink);font-size:var(--t-b);font-weight:700}
-.totop .ball{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:var(--t-b);line-height:1;border:1.5px solid var(--ink);
- background:#fff radial-gradient(circle,#d4d4d4 1px,transparent 1.6px) 0 0/7px 7px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.totop:hover .ball,.totop:focus-visible .ball{transform:translateY(-6px) rotate(-20deg)}
-.totop:active .ball{transform:translateY(-10px)}
-@media (prefers-reduced-motion:reduce){.totop .ball{transition:none}.totop:hover .ball{transform:none}}
+/* back to top: plain text link */
+.totop{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--block);color:var(--ink);font-size:var(--t-b);font-weight:700;text-decoration:none}
+.totop:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 
 @media(min-width:760px){.ski{max-width:none;width:100vw;margin-left:calc(50% - 50vw);margin-right:0}.ski video{aspect-ratio:auto;width:100%;height:min(65vh,56.25vw);object-fit:cover;object-position:50% 45%}}
 </style>
@@ -600,7 +596,7 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 
 <section class="mag-wrap" aria-label="Course photos"><div class="wrap"><div class="mag"><figure class="t1" tabindex="0"><img src="img/m-curve.webp" alt="Curved bunker edge in morning light" loading="lazy" decoding="async"></figure><figure class="t2" tabindex="0"><img src="img/course-4-720.webp" alt="Island green below desert mountains" loading="lazy" decoding="async"></figure><figure class="t3" tabindex="0"><img src="img/course-2-720.webp" alt="Wide fairway under a big sky" loading="lazy" decoding="async"></figure><figure class="t4" tabindex="0"><img src="img/m-edge.webp" alt="Raked sand meeting the grass" loading="lazy" decoding="async"></figure><figure class="t5" tabindex="0"><img src="img/course-3-720.webp" alt="Bunker in front of a green as a storm builds" loading="lazy" decoding="async"></figure><figure class="t6" tabindex="0"><img src="img/m-grass.webp" alt="Close-up of fairway grass" loading="lazy" decoding="async"></figure></div></div></section>
 
-<div class="wrap"><footer><p class="thru">Thanks for playing.</p><div class="pcols"><div><a href="mailto:hoffmannethan@gmail.com"><b>Contact</b></a><span class="g">hoffmannethan@gmail.com</span></div></div><a href="#top" class="totop" aria-label="Back to the tee (top of page)"><span class="ball" aria-hidden="true">↑</span><span>Back to the tee</span></a></footer></div>
+<div class="wrap"><footer><p class="thru">Thanks for playing.</p><div class="pcols"><div><a href="mailto:hoffmannethan@gmail.com"><b>Contact</b></a><span class="g">hoffmannethan@gmail.com</span></div></div><a href="#top" class="totop">Back to the tee box</a></footer></div>
 
 <script>
 (function(){
