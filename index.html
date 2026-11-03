@@ -549,6 +549,7 @@ footer .totop{margin-top:var(--s1)}
 .bio .hn.offc{font-size:20px;line-height:1.15;font-weight:700;color:var(--ink)!important;text-transform:none;letter-spacing:-.015em}
 .tl .sched{justify-self:end;margin-top:var(--s1);font-size:var(--t-x);font-weight:700;line-height:1.15;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor}
 @media(min-width:760px){.tl .sched{grid-column:2 / -1}}
+.stats b,.mark{font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -665,7 +666,6 @@ var marks=[].slice.call(document.querySelectorAll('.mark'));
 marks.forEach(function(m){m.dataset.final=m.textContent;});
 if(reduce||!('IntersectionObserver' in window)){[].forEach.call(document.querySelectorAll('.rv,.fx'),function(e){e.classList.add('in');});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(en){var t=en.target,on=en.isIntersecting;if(on||!t.parentNode.classList.contains('loves'))t.classList.toggle('in',on);
-  if(t.classList.contains('cell')){var mk=t.querySelector('.mark');if(on&&!mk._on){mk._on=1;countUp(mk);}if(!on)mk._on=0;}
  });},{threshold:.12,rootMargin:'-4% 0px -6% 0px'});
 [].forEach.call(document.querySelectorAll('.rv,.fx'),function(e){io.observe(e);});
 })();
@@ -752,6 +752,21 @@ reels.forEach(function(r){io.observe(r.querySelector('video'));});})();
   var done=function(e){if(e&&e.target!==w)return;w.removeEventListener('transitionend',done);w.classList.remove('anim');w.style.height='';};
   w.addEventListener('transitionend',done);setTimeout(done,500);});
 });})();
+</script>
+<script>
+/* count-up: every big stat number, once, when it first scrolls into view */
+(function(){var els=[].slice.call(document.querySelectorAll('.stats b,.mark'));
+if(!els.length||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)||!window.requestAnimationFrame)return;
+function parse(t){var h=t.match(/^(\d+)′(\d+)″$/);if(h)return{fmt:function(v){v=Math.round(v);return Math.floor(v/12)+'′'+(v%12)+'″';},to:+h[1]*12+ +h[2]};
+ var m=t.match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/);if(!m)return null;
+ var dec=(m[2].split('.')[1]||'').length,comma=m[2].indexOf(',')>-1;
+ return{to:parseFloat(m[2].replace(/,/g,'')),fmt:function(v){var n=dec?v.toFixed(dec):String(Math.round(v));if(comma)n=Number(n).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});return m[1]+n+m[3];}};}
+els.forEach(function(el){var fin=el.textContent,p=parse(fin);if(!p)return;el._cu={fin:fin,p:p};});
+function run(el){var c=el._cu,t0=null,dur=1400;el.textContent=c.p.fmt(0);
+ function step(t){if(t0===null)t0=t;var k=Math.min((t-t0)/dur,1),e=1-Math.pow(1-k,3);el.textContent=k<1?c.p.fmt(c.p.to*e):c.fin;if(k<1)requestAnimationFrame(step);}
+ requestAnimationFrame(step);}
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.unobserve(en.target);run(en.target);}});},{threshold:.4});
+els.forEach(function(el){if(el._cu)io.observe(el);});})();
 </script>
 </body>
 </html>
