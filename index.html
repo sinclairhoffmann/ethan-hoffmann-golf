@@ -487,6 +487,12 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 /* course entries: location on its own line under the name */
 .courses b,.courses .small{display:block}
 .courses .small{margin-top:2px}
+
+/* video fade-in: one shared transition for every reel */
+.vw{display:block;position:relative;overflow:hidden;background:#fff center/cover no-repeat}
+.vw video{opacity:0;transform:scale(1.04);filter:blur(8px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s cubic-bezier(.2,.7,.2,1);background:transparent}
+.vw.vin video{opacity:1;transform:none;filter:none}
+@media (prefers-reduced-motion:reduce){.vw video{transition:none}}
 </style>
 </head>
 <body>
@@ -578,7 +584,7 @@ a.ext:hover b{text-decoration:underline;text-decoration-thickness:1px;text-under
 
 <section class="mag-wrap" aria-label="Course photos"><div class="wrap"><div class="mag"><figure class="t1" tabindex="0"><img src="img/m-curve.webp" alt="Curved bunker edge in morning light" loading="lazy" decoding="async"></figure><figure class="t2" tabindex="0"><img src="img/course-4-720.webp" alt="Island green below desert mountains" loading="lazy" decoding="async"></figure><figure class="t3" tabindex="0"><img src="img/course-2-720.webp" alt="Wide fairway under a big sky" loading="lazy" decoding="async"></figure><figure class="t4" tabindex="0"><img src="img/m-edge.webp" alt="Raked sand meeting the grass" loading="lazy" decoding="async"></figure><figure class="t5" tabindex="0"><img src="img/course-3-720.webp" alt="Bunker in front of a green as a storm builds" loading="lazy" decoding="async"></figure><figure class="t6" tabindex="0"><img src="img/m-grass.webp" alt="Close-up of fairway grass" loading="lazy" decoding="async"></figure></div></div></section>
 
-<div class="wrap"><footer><p class="thru">Get in touch.<br><span class="g">Thanks for playing.</span></p><div class="pcols"><div><b>Ethan Hoffmann</b><span class="g">LMU Men’s Golf · First year</span></div><div><b>6′2″ · +4.1</b><span class="g">Height · GHIN handicap</span></div><div><a href="mailto:hoffmannethan@gmail.com"><b>Contact</b></a><span class="g">hoffmannethan@gmail.com</span></div></div></footer></div>
+<div class="wrap"><footer><p class="thru">Thanks for playing.</p><div class="pcols"><div><b>Ethan Hoffmann</b><span class="g">LMU Men’s Golf · First year</span></div><div><b>6′2″ · +4.1</b><span class="g">Height · GHIN handicap</span></div><div><a href="mailto:hoffmannethan@gmail.com"><b>Contact</b></a><span class="g">hoffmannethan@gmail.com</span></div></div></footer></div>
 
 <script>
 (function(){
@@ -660,6 +666,16 @@ reels.forEach(function(r){var v=r.querySelector('video'),b=r.querySelector('.snd
 if(reduce||!('IntersectionObserver' in window))return;
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.5});
 reels.forEach(function(r){io.observe(r.querySelector('video'));});})();
+
+(function(){var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+[].forEach.call(document.querySelectorAll('.reel video'),function(v){var w=document.createElement('span');w.className='vw';
+ if(v.poster)w.style.backgroundImage='url('+v.poster+')';v.parentNode.insertBefore(w,v);w.appendChild(v);
+ if(red||!('IntersectionObserver' in window)){w.classList.add('vin');return;}
+ var seen=false,ready=false;function go(){if(seen&&ready)w.classList.add('vin');}
+ function rd(){ready=true;go();}
+ v.addEventListener('loadeddata',rd);v.addEventListener('canplay',rd);if(v.readyState>=2)ready=true;
+ var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){seen=true;go();o.disconnect();}});},{threshold:.25});o.observe(w);});
+})();
 </script>
 </body>
 </html>
